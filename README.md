@@ -20,3 +20,24 @@ OR
 You can also pull the Docker image directly from Docker Hub:
 docker pull ahmed377/new-web:latest
 docker run -p 4000:80 ahmed377/nginx-webpage:latest
+## Kubernetes Deployment
+
+This section describes how to deploy the web application using Kubernetes.
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Kubernetes cluster (e.g., Minikube, GKE, EKS, AKS)
+- kubectl
+
+### Deployment Instructions
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/aaabaza761/website-nginx.git
+   cd website-nginx/k8s
+   kubectl apply -f deployment.yaml
+   kubectl apply -f service.yaml
+   kubectl apply -f autoscale.yaml
+
