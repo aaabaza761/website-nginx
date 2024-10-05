@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: web-nginx-deploymenyt
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-nginx
+  template:
+    metadata:
+      name: web-nginx-pod
+      labels: 
+        app: web-nginx
+    spec:
+      containers:
+      - name: web-nginx
+        image: ahmed377/web-nginx
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"      
