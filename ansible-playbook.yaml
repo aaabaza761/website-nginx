@@ -1,0 +1,30 @@
+---
+- name: Deploy website-nginx app
+  hosts: master
+  tasks:
+    - name: Apply Kubernetes Deployment YAML
+      command: kubectl apply -f /home/ubuntu/website-nginx/k8s/deployment.yaml
+      register: deployment_result
+      ignore_errors: yes
+
+    - name: Log Deployment Result
+      debug:
+        var: deployment_result
+
+    - name: Apply Kubernetes Service YAML
+      command: kubectl apply -f /home/ubuntu/website-nginx/k8s/service.yaml
+      register: service_result
+      ignore_errors: yes
+
+    - name: Log Service Result
+      debug:
+        var: service_result
+
+    - name: Apply Kubernetes Autoscale YAML
+      command: kubectl apply -f /home/ubuntu/website-nginx/k8s/autoscale.yaml
+      register: autoscale_result
+      ignore_errors: yes
+
+    - name: Log Autoscale Result
+      debug:
+        var: autoscale_result

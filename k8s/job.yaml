@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: load-generator
+spec:
+  template:
+    metadata:
+      labels:
+        app: web-nginx
+    spec:
+      containers:
+      - name: load-generator
+        image: busybox
+        command: ["sh", "-c", "yes > /dev/null"]
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+      restartPolicy: Never
