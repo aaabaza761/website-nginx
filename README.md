@@ -92,10 +92,14 @@ kubectl apply -f job.yaml
 kubectl get hpa  
 kubectl get pods  
 
+
+Certainly! Here's the updated Directory Structure section in Markdown format, suitable for your README.md file:
+
+
 ## Directory Structure  
 
 website-nginx/
-├── sample-website/ # Source code of the application
+├── sample-website/ # Contains the source code of the application
 │ └── ... # Application files (HTML, CSS, JS, etc.)
 ├── k8s/ # Kubernetes deployment files
 │ ├── deployment.yaml # Kubernetes deployment definition
@@ -105,8 +109,6 @@ website-nginx/
 ├── Dockerfile # Docker configuration file
 ├── inventory.ini # Ansible inventory file
 └── ansible-playbook.yaml # Ansible automation script
-
-
 
 
 
