@@ -92,19 +92,21 @@ kubectl apply -f job.yaml
 kubectl get hpa  
 kubectl get pods  
 
+## Directory Structure  
 
-# Directory Structure
-website-nginx/  
-├── sample-website       # source code project 
-├── Dockerfile           # Docker configuration file  
-├── ansible-playbook.yaml # Ansible automation script  
-├── inventory.ini           # Ansible inventory file  
-├──k8s 
-   ├──deployment.yaml      # Kubernetes deployment definition  
-   ├── service.yaml         # Kubernetes LoadBalancer service definition  
-   ├── autoscale.yaml       # Kubernetes Horizontal Pod Autoscaler configuration  
-   ├── job.yaml             # Kubernetes job for load testing  
-└── README.md            # Project documentation  
+website-nginx/
+├── sample-website/ # Source code of the application
+│ └── ... # Application files (HTML, CSS, JS, etc.)
+├── k8s/ # Kubernetes deployment files
+│ ├── deployment.yaml # Kubernetes deployment definition
+│ ├── service.yaml # Kubernetes LoadBalancer service definition
+│ ├── autoscale.yaml # Kubernetes Horizontal Pod Autoscaler configuration
+│ └── job.yaml # Kubernetes job for load testing
+├── Dockerfile # Docker configuration file
+├── inventory.ini # Ansible inventory file
+└── ansible-playbook.yaml # Ansible automation script
+
+
 
 
 
