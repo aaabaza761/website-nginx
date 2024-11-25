@@ -98,20 +98,20 @@ Certainly! Here's the updated Directory Structure section in Markdown format, su
 
 ## Directory Structure  
 
-website-nginx/
-├── sample-website/ # Contains the source code of the application
-│ └── ... # Application files (HTML, CSS, JS, etc.)
-├── k8s/ # Kubernetes deployment files
-│ ├── deployment.yaml # Kubernetes deployment definition
-│ ├── service.yaml # Kubernetes LoadBalancer service definition
-│ ├── autoscale.yaml # Kubernetes Horizontal Pod Autoscaler configuration
-│ └── job.yaml # Kubernetes job for load testing
-├── Dockerfile # Docker configuration file
-├── inventory.ini # Ansible inventory file
-└── ansible-playbook.yaml # Ansible automation script
+website-nginx/  
+- **k8s/**: Kubernetes deployment files  
+  - `deployment.yaml`: Kubernetes deployment definition  
+  - `service.yaml`: Kubernetes LoadBalancer service definition  
+  - `autoscale.yaml`: Kubernetes Horizontal Pod Autoscaler configuration  
+  - `job.yaml`: Kubernetes job for load testing  
 
+- **sample-website/**: Contains the source code of the application  
+  - `...`: Application files (HTML, CSS, JS, etc.)  
 
-
+- `Dockerfile`: Docker configuration file  
+- `ansible-playbook.yaml`: Ansible automation script (with job cleanup)  
+- `inventory.ini`: Ansible inventory file  
+- `README.md`: Project documentation  
 
 
 
