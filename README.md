@@ -1,14 +1,15 @@
 # website-nginx
 website-nginx is a web application containerized using Docker and managed with Ansible and Kubernetes. The project demonstrates horizontal auto-scaling to handle increased CPU loads efficiently, running in a cloud environment on AWS.
 
-# Table of Contents
-Project Overview
-Features
-Prerequisites
-Getting Started
-Usage
-Kubernetes Scaling Demo
-Directory Structure
+# Table of Contents  
+
+- Project Overview  
+- Features  
+- Prerequisites  
+- Getting Started  
+- Usage  
+- Kubernetes Scaling Demo  
+- Directory Structure  
 
 
 # Project Overview
