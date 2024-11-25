@@ -1,86 +1,112 @@
-# website-nginx
-Kubernetes deployment for website-nginx on AWS with Docker support, featuring HPA, ELB, Target Groups, and EFS integration for scalable web hosting.
-Table of Contents
+## website-nginx
+website-nginx is a web application containerized using Docker and managed with Ansible and Kubernetes. The project demonstrates horizontal auto-scaling to handle increased CPU loads efficiently, running in a cloud environment on AWS.
 
-## Features
-## Prerequisites
-## Installation
+## Table of Contents
+Project Overview
+Features
+Prerequisites
+Getting Started
+Usage
+Kubernetes Scaling Demo
+Directory Structure
+
+
+## Project Overview
+website-nginx is designed to demonstrate a scalable web application deployment using modern DevOps tools. The application is containerized, automated, and managed in a Kubernetes cluster deployed on an AWS EC2 master node. It features auto-scaling capabilities triggered by CPU load.
+
+## features
+Containerization: Built using a Dockerfile for consistent application environments.
+Automation: Deployment automated with ansible-playbook.yaml and inventory files.
+Auto-Scaling: Configured Horizontal Pod Autoscaler to scale replicas from 1 to 5 when CPU usage exceeds 50%.
+Load Testing: Includes a job.yaml file to simulate high CPU loads for testing auto-scaling.
+Service Integration: Uses a Kubernetes service of type LoadBalancer to create AWS Elastic Load Balancer (ELB) and Target Groups automatically.
+Prerequisites
+Before deploying the application, ensure the following:
+
+## AWS Setup:
+
+AWS CLI configured with your credentials and default region.
+IAM permissions to create LoadBalancers, Target Groups, and manage EC2 instances.
+
+## Kubernetes Setup:
+
+ Kubernetes cluster configured to support the LoadBalancer service type with AWS as the cloud provider.
+
+## Tools Installed:
+
+Docker for building and running the container.
+Ansible for automating deployment tasks.
+Kubernetes to manage deployments and scaling.
+
+## Getting Started
+
+# Clone the repository:
+git clone https://github.com/<your-username>/website-nginx.git  
+cd website-nginx  
+
+# Build the Docker image:
+docker build -t website-nginx .  
+
+
+# Deploy the application using Ansible:
+# Update the inventory file with your EC2 instance details.
+# Run the playbook:
+ansible-playbook ansible-playbook.yaml  
+
+
+# Apply Kubernetes resources:
+kubectl apply -f deployment.yaml  
+kubectl apply -f service.yaml  
+kubectl apply -f autoscale.yaml  
+
 ## Usage
+Accessing the Application:
+The Kubernetes service is of type LoadBalancer.
 
-### Local Development with Docker
-### Using Docker Hub Image
-### Kubernetes Deployment on AWS
+# Run the following command to retrieve the LoadBalancer's external IP or DNS:
+kubectl get service  
+Copy the EXTERNAL-IP or Hostname and access the application via your browser.
 
+# Scaling and Monitoring:
 
-## Architecture
-## Benefits
+# Monitor the Horizontal Pod Autoscaler (HPA):
+kubectl get hpa  
 
-## Features
+# Check the current pods:
+kubectl get pods  
 
-  Kubernetes Deployment for website-nginx application
-  Horizontal Pod Autoscaler (HPA) for dynamic resource management
-  AWS Integration:
+# AWS Resources:
 
-      Elastic File System (EFS) for persistent storage
-      Elastic Load Balancer (ELB) for traffic distribution
-      Target Groups for request routing
+The LoadBalancer service automatically provisions an AWS Elastic Load Balancer (ELB) and a Target Group. These resources handle routing traffic to the EC2 instances hosting the application pods.
+Kubernetes Scaling Demo
+To test the auto-scaling feature:
 
+# Apply the job.yaml file to create a pod that simulates high CPU load:
+kubectl apply -f job.yaml  
 
-Docker support for local development and testing
-Pre-built Docker image available on Docker Hub
-
-## Prerequisites
-
-  Docker
-  Git (for cloning the repository)
-  AWS account (for Kubernetes deployment)
-
-## Installation
-
-  Clone the repository:
-  Copygit clone https://github.com/aaabaza761/website-nginx.git
-  cd website-nginx
+# Observe the Horizontal Pod Autoscaler (HPA):
+# The number of replicas will scale from 1 to 5 as the CPU load increases.
+# Monitor the scaling process using:
+kubectl get hpa  
+kubectl get pods  
 
 
-## Usage
-    Local Development with Docker
+## Directory Structure
+website-nginx/  
+├── sample-website       # source code project 
+├── Dockerfile           # Docker configuration file  
+├── ansible-playbook.yaml # Ansible automation script  
+├── inventory.ini           # Ansible inventory file  
+├──k8s 
+   ├──deployment.yaml      # Kubernetes deployment definition  
+   ├── service.yaml         # Kubernetes LoadBalancer service definition  
+   ├── autoscale.yaml       # Kubernetes Horizontal Pod Autoscaler configuration  
+   ├── job.yaml             # Kubernetes job for load testing  
+└── README.md            # Project documentation  
 
-    Build and run using Docker Compose:
-      docker-compose up --build
 
-      Access the web page at http://localhost:8080
 
-   Using Docker Hub Image
 
-    Pull and run the pre-built Docker image:
-      docker pull ahmed377/new-web:latest
-      docker run -p 4000:80 ahmed377/nginx-webpage:latest
 
-Access the web page at http://localhost:4000
 
-## Kubernetes Deployment on AWS
-For Kubernetes deployment, use the provided manifests:
 
-  deployment.yaml: Kubernetes Deployment configuration
-  service.yaml: LoadBalancer Service configuration
-  hpa.yaml: Horizontal Pod Autoscaler configuration
-  storage-class.yaml: EFS StorageClass configuration
-  pvc.yaml: PersistentVolumeClaim configuration
-
-Apply these manifests to your Kubernetes cluster on AWS.
-Architecture
-
-## Kubernetes: Orchestrates containerized application deployment
-## Docker: Containerizes the nginx web server
-## AWS EFS: Provides persistent storage for the application
-## AWS ELB: Distributes incoming traffic across multiple targets
-## AWS Target Groups: Routes requests to registered Kubernetes pods
-
-### Benefits
-
-  ## High Availability: Ensured through load balancing
-  ## Scalability: Automatic scaling with HPA and ELB
-  ## Efficiency: Optimized resource utilization
-  ## Persistence: Data persistence across pod lifecycles with EFS
-  ## Cloud-Native: Leverages AWS services for enhanced functionality
-  ## Local Development: Easy setup for testing using Docker
