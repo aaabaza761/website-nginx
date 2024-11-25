@@ -1,7 +1,7 @@
-## website-nginx
+# website-nginx
 website-nginx is a web application containerized using Docker and managed with Ansible and Kubernetes. The project demonstrates horizontal auto-scaling to handle increased CPU loads efficiently, running in a cloud environment on AWS.
 
-## Table of Contents
+# Table of Contents
 Project Overview
 Features
 Prerequisites
@@ -11,10 +11,10 @@ Kubernetes Scaling Demo
 Directory Structure
 
 
-## Project Overview
+# Project Overview
 website-nginx is designed to demonstrate a scalable web application deployment using modern DevOps tools. The application is containerized, automated, and managed in a Kubernetes cluster deployed on an AWS EC2 master node. It features auto-scaling capabilities triggered by CPU load.
 
-## features
+# features
 Containerization: Built using a Dockerfile for consistent application environments.
 Automation: Deployment automated with ansible-playbook.yaml and inventory files.
 Auto-Scaling: Configured Horizontal Pod Autoscaler to scale replicas from 1 to 5 when CPU usage exceeds 50%.
@@ -38,60 +38,61 @@ Docker for building and running the container.
 Ansible for automating deployment tasks.
 Kubernetes to manage deployments and scaling.
 
-## Getting Started
+# Getting Started
 
-# Clone the repository:
+## Clone the repository:
 git clone https://github.com/<your-username>/website-nginx.git  
 cd website-nginx  
 
-# Build the Docker image:
+## Build the Docker image:
 docker build -t website-nginx .  
 
 
-# Deploy the application using Ansible:
-# Update the inventory file with your EC2 instance details.
-# Run the playbook:
+## Deploy the application using Ansible:
+## Update the inventory file with your EC2 instance details.
+## Run the playbook:
 ansible-playbook ansible-playbook.yaml  
 
 
-# Apply Kubernetes resources:
+## Apply Kubernetes resources:
 kubectl apply -f deployment.yaml  
 kubectl apply -f service.yaml  
 kubectl apply -f autoscale.yaml  
 
-## Usage
-Accessing the Application:
-The Kubernetes service is of type LoadBalancer.
+# Usage
 
-# Run the following command to retrieve the LoadBalancer's external IP or DNS:
+## Accessing the Application:
+## The Kubernetes service is of type LoadBalancer.
+
+## Run the following command to retrieve the LoadBalancer's external IP or DNS:
 kubectl get service  
 Copy the EXTERNAL-IP or Hostname and access the application via your browser.
 
-# Scaling and Monitoring:
+## Scaling and Monitoring:
 
-# Monitor the Horizontal Pod Autoscaler (HPA):
+### Monitor the Horizontal Pod Autoscaler (HPA):
 kubectl get hpa  
 
-# Check the current pods:
+### Check the current pods:
 kubectl get pods  
 
-# AWS Resources:
+## AWS Resources:
 
 The LoadBalancer service automatically provisions an AWS Elastic Load Balancer (ELB) and a Target Group. These resources handle routing traffic to the EC2 instances hosting the application pods.
-Kubernetes Scaling Demo
-To test the auto-scaling feature:
+### Kubernetes Scaling Demo
+### To test the auto-scaling feature:
 
-# Apply the job.yaml file to create a pod that simulates high CPU load:
+## Apply the job.yaml file to create a pod that simulates high CPU load:
 kubectl apply -f job.yaml  
 
-# Observe the Horizontal Pod Autoscaler (HPA):
-# The number of replicas will scale from 1 to 5 as the CPU load increases.
-# Monitor the scaling process using:
+### Observe the Horizontal Pod Autoscaler (HPA):
+### The number of replicas will scale from 1 to 5 as the CPU load increases.
+### Monitor the scaling process using:
 kubectl get hpa  
 kubectl get pods  
 
 
-## Directory Structure
+# Directory Structure
 website-nginx/  
 ├── sample-website       # source code project 
 ├── Dockerfile           # Docker configuration file  
